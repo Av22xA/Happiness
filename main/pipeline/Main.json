@@ -1,10 +1,10 @@
 {
-	"name": "pipeline1",
+	"name": "Main",
 	"properties": {
 		"activities": [
 			{
-				"name": "GetFilesInfo",
-				"type": "GetMetadata",
+				"name": "Copy Country",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -13,30 +13,60 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "dsFileInfo",
-						"type": "DatasetReference"
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "happinesscontainer//countries_continents_codes_flags_url.json"
 					},
-					"fieldList": [
-						"childItems"
-					],
-					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "BinaryReadSettings"
+					{
+						"name": "Destination",
+						"value": "happinesscontainer//Happinesstest.csv"
 					}
-				}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AZURESQLDatabase",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
-				"name": "ForEach1",
+				"name": "loopdatainfolder",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "GetFilesInfo",
+						"activity": "Get Files from Folder",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -45,7 +75,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('GetFilesInfo').output.childItems",
+						"value": "@activity('Get Files from Folder').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
@@ -75,7 +105,10 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
+									"writeBehavior": "upsert",
+									"upsertSettings": {
+										"useTempDB": true
+									},
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
@@ -104,6 +137,42 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "Get Files from Folder",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "Copy Country",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
 				}
 			}
 		],
