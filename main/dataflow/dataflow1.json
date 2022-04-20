@@ -20,7 +20,7 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     YearFromFile as string",
+				"     YearFromFile as string ($YearFromFile)",
 				"}",
 				"source(output(",
 				"          Column_1 as string,",
