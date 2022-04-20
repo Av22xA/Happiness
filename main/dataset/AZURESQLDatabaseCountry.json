@@ -1,5 +1,5 @@
 {
-	"name": "AZURESQLDatabase",
+	"name": "AZURESQLDatabaseCountry",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase2",

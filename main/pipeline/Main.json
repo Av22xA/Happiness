@@ -60,7 +60,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AZURESQLDatabase",
+						"referenceName": "AZURESQLDatabaseCountry",
 						"type": "DatasetReference"
 					}
 				]
@@ -140,7 +140,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "AzureSqlTable1",
+									"referenceName": "AZURESQLDatabaseHappiness",
 									"type": "DatasetReference"
 								}
 							]
