@@ -163,7 +163,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Year",
+						"value": ""
+					}
+				],
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "DelimitedText2",
