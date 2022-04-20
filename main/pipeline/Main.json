@@ -160,15 +160,20 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
 							"typeProperties": {
 								"dataflow": {
 									"referenceName": "dataflow1",
 									"type": "DataFlowReference",
+									"parameters": {
+										"YearFromFile": {
+											"value": "subsubstring(@item().itemName,6,4)",
+											"type": "Expression"
+										}
+									},
 									"datasetParameters": {
 										"source1": {
 											"FileName": {
-												"value": "@item()",
+												"value": "@activity('Get Files from Folder').output.itemName",
 												"type": "Expression"
 											}
 										}
