@@ -38,7 +38,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "TRUNCATE TABLE [DSHappiness].country",
+							"value": "TRUNCATE TABLE [DSHappiness].country\nTRUNCATE TABLE [DSHappiness].[testhappinesstest]",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -98,15 +98,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "DelimitedTextSource",
-									"additionalColumns": [
-										{
-											"name": "year",
-											"value": {
-												"value": "@item().name",
-												"type": "Expression"
-											}
-										}
-									],
+									"additionalColumns": {
+										"type": "Expression",
+										"value": "substring(\"@{item().name}\", 6, 4)"
+									},
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
