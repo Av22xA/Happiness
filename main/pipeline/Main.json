@@ -101,10 +101,7 @@
 									"additionalColumns": [
 										{
 											"name": "year",
-											"value": {
-												"value": "substring(@{item().itemName},6,4)",
-												"type": "Expression"
-											}
+											"value": ""
 										}
 									],
 									"storeSettings": {
@@ -179,7 +176,8 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"childItems"
+						"childItems",
+						"itemName"
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
