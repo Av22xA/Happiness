@@ -100,7 +100,7 @@
 									"type": "DelimitedTextSource",
 									"additionalColumns": {
 										"type": "Expression",
-										"value": "substring(\"@{item().name}\", 6, 4)"
+										"value": "@split(item().name,'_')[2]"
 									},
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
