@@ -102,7 +102,7 @@
 										{
 											"name": "year",
 											"value": {
-												"value": "@item().item",
+												"value": "@item().name",
 												"type": "Expression"
 											}
 										}
