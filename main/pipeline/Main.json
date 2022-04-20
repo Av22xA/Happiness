@@ -84,7 +84,7 @@
 					},
 					"activities": [
 						{
-							"name": "copydata",
+							"name": "Copy data1",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -101,11 +101,6 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
-										"wildcardFolderPath": "DATA",
-										"wildcardFileName": {
-											"value": "@activity('Get Files from Folder').output.itemName",
-											"type": "Expression"
-										},
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -116,10 +111,7 @@
 									"type": "AzureSqlSink",
 									"writeBehavior": "upsert",
 									"upsertSettings": {
-										"useTempDB": true,
-										"keys": [
-											"country"
-										]
+										"useTempDB": true
 									},
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
@@ -137,8 +129,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DelimitedText2",
-									"type": "DatasetReference"
+									"referenceName": "DelimitedText3",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
