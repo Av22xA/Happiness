@@ -114,7 +114,6 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": "TRUNCATE TABLE [DSHappiness].Happiness",
 									"writeBehavior": "upsert",
 									"upsertSettings": {
 										"useTempDB": true,
