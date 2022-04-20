@@ -30,6 +30,25 @@
 						"type": "BinaryReadSettings"
 					}
 				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetFilesInfo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetFilesInfo').output.childItems",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
