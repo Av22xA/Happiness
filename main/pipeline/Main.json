@@ -110,7 +110,7 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": "TRUNCATE TABLE [DSHappiness].country",
+									"preCopyScript": "TRUNCATE TABLE [DSHappiness].[dbo].[Happiness]",
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
@@ -140,7 +140,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "AZURESQLDatabase",
+									"referenceName": "AzureSqlTable1",
 									"type": "DatasetReference"
 								}
 							]
