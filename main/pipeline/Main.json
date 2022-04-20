@@ -98,6 +98,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "year",
+											"value": {
+												"value": "substring(\"@{item().itemName}\",6,4)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
@@ -110,10 +119,6 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": {
-										"value": "'TRUNCATE TABLE [DSHappiness].[testhappiness]'",
-										"type": "Expression"
-									},
 									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
 								},
