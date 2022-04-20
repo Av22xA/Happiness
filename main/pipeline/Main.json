@@ -102,7 +102,7 @@
 										{
 											"name": "year",
 											"value": {
-												"value": "substring(\"@{item().itemName}\",6,4)",
+												"value": "substring(\"@{item()}\",6,4)",
 												"type": "Expression"
 											}
 										}
