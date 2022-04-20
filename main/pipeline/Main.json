@@ -37,6 +37,10 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": {
+							"value": "TRUNCATE TABLE [DSHappiness].country",
+							"type": "Expression"
+						},
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -107,7 +111,10 @@
 									"type": "AzureSqlSink",
 									"writeBehavior": "upsert",
 									"upsertSettings": {
-										"useTempDB": true
+										"useTempDB": true,
+										"keys": [
+											"images_file"
+										]
 									},
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
