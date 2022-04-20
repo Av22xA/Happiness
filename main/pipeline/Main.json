@@ -138,7 +138,10 @@
 							"inputs": [
 								{
 									"referenceName": "DelimitedText2",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": "@activity('Get Files from Folder').output.itemName"
+									}
 								}
 							],
 							"outputs": [
