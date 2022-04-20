@@ -15,7 +15,7 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "dbo",
+			"schema": "DSHappiness",
 			"table": "Happiness"
 		}
 	}
