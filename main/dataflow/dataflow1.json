@@ -38,7 +38,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: true,",
 				"     skipLines: 1) ~> source1",
-				"source1 derive(Year = $YearFromFile) ~> HappinessID"
+				"source1 derive(Year = ERROR_FUNCTION('')) ~> HappinessID"
 			]
 		}
 	}
