@@ -114,10 +114,7 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": {
-										"value": "'TRUNCATE TABLE [DSHappiness].CFY_and_NFY_export'",
-										"type": "Expression"
-									},
+									"preCopyScript": "TRUNCATE TABLE [DSHappiness].Happiness",
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
