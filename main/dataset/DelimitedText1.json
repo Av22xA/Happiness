@@ -1,0 +1,72 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "report_2015.csv",
+				"container": "happinesscontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Afghanistan",
+				"type": "String"
+			},
+			{
+				"name": "Flag_of_Afghanistan.svg",
+				"type": "String"
+			},
+			{
+				"name": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Afghanistan.svg",
+				"type": "String"
+			},
+			{
+				"name": "AF",
+				"type": "String"
+			},
+			{
+				"name": "AFG",
+				"type": "String"
+			},
+			{
+				"name": "4",
+				"type": "String"
+			},
+			{
+				"name": "ISO 3166-2:AF",
+				"type": "String"
+			},
+			{
+				"name": "Asia",
+				"type": "String"
+			},
+			{
+				"name": "Southern Asia",
+				"type": "String"
+			},
+			{
+				"name": "Blank",
+				"type": "String"
+			},
+			{
+				"name": "142",
+				"type": "String"
+			},
+			{
+				"name": "34",
+				"type": "String"
+			}
+		]
+	}
+}
