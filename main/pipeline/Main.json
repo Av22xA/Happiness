@@ -100,7 +100,11 @@
 									"type": "DelimitedTextSource",
 									"additionalColumns": [
 										{
-											"value": "$$FILEPATH"
+											"name": "year",
+											"value": {
+												"value": "substring(\"@{item().itemName}\",6,4)",
+												"type": "Expression"
+											}
 										}
 									],
 									"storeSettings": {
@@ -172,12 +176,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
-					{
-						"name": "Year",
-						"value": ""
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "DelimitedText2",
