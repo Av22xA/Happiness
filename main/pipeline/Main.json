@@ -101,6 +101,14 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@activity('Get Files from Folder').output.childItems",
+											"type": "Expression"
+										},
+										"wildcardFileName": {
+											"value": "@activity('Get Files from Folder').output.itemName",
+											"type": "Expression"
+										},
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
