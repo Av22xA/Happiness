@@ -115,7 +115,13 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"preCopyScript": "TRUNCATE TABLE [DSHappiness].Happiness",
-									"writeBehavior": "insert",
+									"writeBehavior": "upsert",
+									"upsertSettings": {
+										"useTempDB": true,
+										"keys": [
+											"country"
+										]
+									},
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
