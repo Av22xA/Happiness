@@ -16,7 +16,7 @@
 		],
 		"typeProperties": {
 			"schema": "DSHappiness",
-			"table": "testhappiness"
+			"table": "testhappiness1"
 		}
 	}
 }
