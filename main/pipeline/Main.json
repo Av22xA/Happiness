@@ -99,6 +99,12 @@
 								"dataflow": {
 									"referenceName": "ChangeDataTypeAndSinkHappiness",
 									"type": "DataFlowReference",
+									"parameters": {
+										"parameter1": {
+											"value": "'@{item()}'",
+											"type": "Expression"
+										}
+									},
 									"datasetParameters": {
 										"HappinessCSV": {
 											"FileName": "@item().name"
