@@ -21,7 +21,11 @@
 					"name": "sink1"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "AddColumns"
+				}
+			],
 			"scriptLines": [
 				"parameters{",
 				"     parameter1 as string",
@@ -39,7 +43,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> HappinessCSV",
-				"HappinessCSV sink(allowSchemaDrift: true,",
+				"HappinessCSV derive(Year = $parameter1) ~> AddColumns",
+				"AddColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          ID as integer",

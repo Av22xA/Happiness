@@ -101,7 +101,7 @@
 									"type": "DataFlowReference",
 									"parameters": {
 										"parameter1": {
-											"value": "'@{item()}'",
+											"value": "'@{substring(item().name, 7, 4)}'",
 											"type": "Expression"
 										}
 									},
