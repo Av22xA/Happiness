@@ -188,7 +188,9 @@
 												"ordinal": 8
 											},
 											"sink": {
-												"name": "Perceptions of corruption"
+												"name": "Prop_8",
+												"type": "String",
+												"physicalType": "nvarchar"
 											}
 										},
 										{
