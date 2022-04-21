@@ -132,9 +132,7 @@
 												"ordinal": 1
 											},
 											"sink": {
-												"name": "Prop_0",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Country"
 											}
 										},
 										{
@@ -142,9 +140,7 @@
 												"ordinal": 2
 											},
 											"sink": {
-												"name": "year",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Score"
 											}
 										},
 										{
@@ -152,9 +148,7 @@
 												"ordinal": 3
 											},
 											"sink": {
-												"name": "Prop_1",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "GDP per capita"
 											}
 										},
 										{
@@ -162,9 +156,7 @@
 												"ordinal": 4
 											},
 											"sink": {
-												"name": "Prop_2",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Social support"
 											}
 										},
 										{
@@ -172,9 +164,7 @@
 												"ordinal": 5
 											},
 											"sink": {
-												"name": "Prop_3",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Healthy life expectancy"
 											}
 										},
 										{
@@ -182,9 +172,7 @@
 												"ordinal": 6
 											},
 											"sink": {
-												"name": "Prop_4",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Freedom to make life choices"
 											}
 										},
 										{
@@ -192,9 +180,7 @@
 												"ordinal": 7
 											},
 											"sink": {
-												"name": "Prop_5",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Generosity"
 											}
 										},
 										{
@@ -202,9 +188,7 @@
 												"ordinal": 8
 											},
 											"sink": {
-												"name": "Prop_6",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Perceptions of corruption"
 											}
 										},
 										{
@@ -212,19 +196,7 @@
 												"ordinal": 9
 											},
 											"sink": {
-												"name": "Prop_7",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"ordinal": 10
-											},
-											"sink": {
-												"name": "Prop_8",
-												"type": "String",
-												"physicalType": "nvarchar"
+												"name": "Year"
 											}
 										}
 									],
