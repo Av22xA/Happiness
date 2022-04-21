@@ -1,0 +1,56 @@
+{
+	"name": "ChangeDataTypeAndSinkHappiness",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3_copy1",
+						"type": "DatasetReference"
+					},
+					"name": "HappinessCSV"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AZURESQLDatabaseHappiness",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Country as string,",
+				"          Score as decimal(10,0),",
+				"          {GDP per capita} as decimal(10,0),",
+				"          {Social support} as decimal(10,0),",
+				"          {Healthy life expectancy} as decimal(10,0),",
+				"          {Freedom to make life choices} as decimal(10,0),",
+				"          Generosity as decimal(10,0),",
+				"          {Perceptions of corruption} as decimal(10,0)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> HappinessCSV",
+				"HappinessCSV sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ID as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}
