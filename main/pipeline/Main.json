@@ -98,10 +98,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "DelimitedTextSource",
-									"additionalColumns": {
-										"type": "Expression",
-										"value": "@split(item().name,'_')[1]"
-									},
+									"additionalColumns": [
+										{
+											"name": "year",
+											"value": {
+												"value": "@split(item().name,'_')[1]",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
@@ -189,6 +194,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"year": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
