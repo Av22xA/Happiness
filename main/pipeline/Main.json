@@ -194,11 +194,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"year": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
