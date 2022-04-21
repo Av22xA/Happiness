@@ -100,8 +100,8 @@
 									"referenceName": "ChangeDataTypeAndSinkHappiness",
 									"type": "DataFlowReference",
 									"parameters": {
-										"parameter1": {
-											"value": "'@{substring(item().name, 7, 4)}'",
+										"ParamYear": {
+											"value": "@int(substring(item().name, 7, 4))",
 											"type": "Expression"
 										}
 									},
