@@ -38,7 +38,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "TRUNCATE TABLE [DSHappiness].country\nTRUNCATE TABLE [DSHappiness].[testhappinesstest]",
+							"value": "TRUNCATE TABLE [DSHappiness].country\n",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
