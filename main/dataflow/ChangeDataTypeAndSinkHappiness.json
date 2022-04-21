@@ -28,7 +28,7 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     parameter1 as string",
+				"     ParamYear as integer",
 				"}",
 				"source(output(",
 				"          Country as string,",
@@ -43,7 +43,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> HappinessCSV",
-				"HappinessCSV derive(Year = $parameter1) ~> AddColumns",
+				"HappinessCSV derive(Year = $ParamYear) ~> AddColumns",
 				"AddColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
