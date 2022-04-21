@@ -102,7 +102,7 @@
 										{
 											"name": "year",
 											"value": {
-												"value": "@split(item().name,'_')[1]",
+												"value": "@substring(item().name, 6, 4)",
 												"type": "Expression"
 											}
 										}
