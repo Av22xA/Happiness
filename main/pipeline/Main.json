@@ -129,6 +129,115 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Country",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Country",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Score",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Score",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "GDP per capita",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "GDP per capita",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Social support",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Social support",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Healthy life expectancy",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Healthy life expectancy",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Freedom to make life choices",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Freedom to make life choices",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Generosity",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Generosity",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Perceptions of corruption",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Perceptions of corruption",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "year",
+												"type": "String"
+											},
+											"sink": {
+												"name": "year",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										}
+									],
 									"typeConversion": true,
 									"typeConversionSettings": {
 										"allowDataTruncation": true,
