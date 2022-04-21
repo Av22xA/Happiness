@@ -1,0 +1,53 @@
+{
+	"name": "SQLHappinessSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Score",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GDP per capita",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Social support",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Healthy life expectancy",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Freedom to make life choices",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Generosity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Perceptions of corruption",
+				"type": "nvarchar"
+			},
+			{
+				"name": "year",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "DSHappiness",
+			"table": "testhappinesstest"
+		}
+	}
+}

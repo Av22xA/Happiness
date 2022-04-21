@@ -1,0 +1,72 @@
+{
+	"name": "SQLCountrySource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "images_file",
+				"type": "nvarchar"
+			},
+			{
+				"name": "image_url",
+				"type": "nvarchar"
+			},
+			{
+				"name": "alpha-2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "alpha-3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "country-code",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "iso_3166-2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "region",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sub-region",
+				"type": "nvarchar"
+			},
+			{
+				"name": "intermediate-region",
+				"type": "nvarchar"
+			},
+			{
+				"name": "region-code",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "sub-region-code",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "intermediate-region-code",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "DSHappiness",
+			"table": "country"
+		}
+	}
+}
