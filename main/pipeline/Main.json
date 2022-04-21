@@ -38,7 +38,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": {
-							"value": "TRUNCATE TABLE [DSHappiness].country\n",
+							"value": "TRUNCATE TABLE [DSHappiness].country\nTRUNCATE TABLE [DSHappiness].Happiness",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
@@ -111,7 +111,10 @@
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
 										"wildcardFolderPath": "DATA",
-										"wildcardFileName": "@item().name",
+										"wildcardFileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
