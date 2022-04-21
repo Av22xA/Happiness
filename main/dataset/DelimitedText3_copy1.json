@@ -1,0 +1,66 @@
+{
+	"name": "DelimitedText3_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": "DATA",
+				"container": "happinesscontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": "Null",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Score",
+				"type": "String"
+			},
+			{
+				"name": "GDP per capita",
+				"type": "String"
+			},
+			{
+				"name": "Social support",
+				"type": "String"
+			},
+			{
+				"name": "Healthy life expectancy",
+				"type": "String"
+			},
+			{
+				"name": "Freedom to make life choices",
+				"type": "String"
+			},
+			{
+				"name": "Generosity",
+				"type": "String"
+			},
+			{
+				"name": "Perceptions of corruption",
+				"type": "String"
+			}
+		]
+	}
+}
