@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy data1_copy1_copy1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -17,9 +17,23 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "year",
+								"value": {
+									"value": "@substring(item().name, 7, 4)",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "DATA",
+							"wildcardFileName": {
+								"value": "@item().name",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -28,11 +42,121 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Score",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Score",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GDP per capita",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "GDP per capita",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Social support",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Social support",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Healthy life expectancy",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Healthy life expectancy",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Freedom to make life choices",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Freedom to make life choices",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Generosity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Generosity",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Perceptions of corruption",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Perceptions of corruption",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "year",
+									"type": "String"
+								},
+								"sink": {
+									"name": "year",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -42,8 +166,195 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "dummy",
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@item().name",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AZURESQLDatabaseHappiness",
 						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data1_copy1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "year",
+								"value": {
+									"value": "@substring(item().name, 7, 4)",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "DATA",
+							"wildcardFileName": {
+								"value": "@item().name",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Score",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Score",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "GDP per capita",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "GDP per capita",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Social support",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Social support",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Healthy life expectancy",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Healthy life expectancy",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Freedom to make life choices",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Freedom to make life choices",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Generosity",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Generosity",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Perceptions of corruption",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Perceptions of corruption",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "year",
+									"type": "String"
+								},
+								"sink": {
+									"name": "year",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@item().name",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
