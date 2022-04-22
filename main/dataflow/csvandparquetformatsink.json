@@ -22,17 +22,17 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Record",
-						"type": "DatasetReference"
-					},
-					"name": "sink1"
-				},
-				{
-					"dataset": {
 						"referenceName": "Parquet1",
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "Record",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
 				}
 			],
 			"transformations": [
@@ -56,6 +56,9 @@
 				},
 				{
 					"name": "rank1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -107,7 +110,29 @@
 				"     broadcast: 'auto')~> join2",
 				"derivedColumn2 rank(asc(Country, true),",
 				"     output(Score as long)) ~> rank1",
-				"derivedColumn3 sink(allowSchemaDrift: true,",
+				"derivedColumn3 select(mapColumn(",
+				"          {Rank Per Region},",
+				"          {GDP per capita},",
+				"          {Social support},",
+				"          {Healthy life expectancy},",
+				"          {Freedom to make life choices},",
+				"          Generosity,",
+				"          {Perceptions of corruption},",
+				"          year = source2@year,",
+				"          image_url,",
+				"          region,",
+				"          {region-code},",
+				"          {Happiness Status},",
+				"          {Happiness Score} = Score",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          Country as string,",
@@ -120,12 +145,7 @@
 				"          {Perceptions of corruption} as string",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1",
-				"derivedColumn3 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     format: 'parquet',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true) ~> sink3"
 			]
 		}
 	}
