@@ -32,6 +32,15 @@
 				},
 				{
 					"name": "aggregate1"
+				},
+				{
+					"name": "derivedColumn3"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "rank1"
 				}
 			],
 			"scriptLines": [
@@ -68,13 +77,21 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source2",
+				"     query: '',",
+				"     format: 'query') ~> source2",
 				"source1 derive({Upper Case Region} = upper(region)) ~> derivedColumn1",
-				"source2 derive(er = 1) ~> derivedColumn2",
-				"derivedColumn2, derivedColumn1 join(source2@Country == source1@country,",
+				"source2 derive(Score = toFloat(Score)) ~> derivedColumn2",
+				"rank1, derivedColumn1 join(source2@Country == source1@country,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> join1",
-				"join1 aggregate() ~> aggregate1"
+				"join1 aggregate(groupBy(year),",
+				"     {Rank Per Region} = maxIf(Score == max(Score), region)) ~> aggregate1",
+				"join2 derive({Happiness Status} = case(Score > 5.6, \"green\", case(Score < 2.6, \"Red\", case(Score<= 5.6 && Score >= 2.6, \"Amber\")))) ~> derivedColumn3",
+				"aggregate1, join1 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> join2",
+				"derivedColumn2 rank(asc(Country, true),",
+				"     output(Score as long)) ~> rank1"
 			]
 		}
 	}
