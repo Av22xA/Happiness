@@ -59,6 +59,12 @@
 				},
 				{
 					"name": "aggregate1"
+				},
+				{
+					"name": "aggregate2"
+				},
+				{
+					"name": "join3"
 				}
 			],
 			"scriptLines": [
@@ -101,7 +107,7 @@
 				"derivedColumn2, derivedColumn1 join(source2@Country == source1@country,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> join1",
-				"join2 derive({Happiness Status} = case(Score > 5.6, \"green\", case(Score < 2.6, \"Red\", case(Score<= 5.6 && Score >= 2.6, \"Amber\")))) ~> derivedColumn3",
+				"join3 derive({Happiness Status} = case(Score > 5.6, \"green\", case(Score < 2.6, \"Red\", case(Score<= 5.6 && Score >= 2.6, \"Amber\")))) ~> derivedColumn3",
 				"window1, join1 join(aggregate1@year == source2@year",
 				"     && aggregate1@region == source1@region,",
 				"     joinType:'inner',",
@@ -120,7 +126,8 @@
 				"          {region-code},",
 				"          {Happiness Status},",
 				"          {Happiness Score} = Score,",
-				"          {Rank Per Region}",
+				"          {Rank Per Region},",
+				"          {Overall Rank}",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
@@ -129,6 +136,11 @@
 				"join1 aggregate(groupBy(year,",
 				"          region),",
 				"     SumScoreRegionYear = sum(Score)) ~> aggregate1",
+				"join1 aggregate(groupBy(year),",
+				"     {Overall Rank} = sum(Score)) ~> aggregate2",
+				"aggregate2, join2 join(aggregate2@year == source2@year,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> join3",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
