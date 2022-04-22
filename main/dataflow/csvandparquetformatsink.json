@@ -1,0 +1,81 @@
+{
+	"name": "csvandparquetformatsink",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SQLCountrySource",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLHappinessSource",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          country as string,",
+				"          images_file as string,",
+				"          image_url as string,",
+				"          {alpha-2} as string,",
+				"          {alpha-3} as string,",
+				"          {country-code} as long,",
+				"          {iso_3166-2} as string,",
+				"          region as string,",
+				"          {sub-region} as string,",
+				"          {intermediate-region} as string,",
+				"          {region-code} as long,",
+				"          {sub-region-code} as long,",
+				"          {intermediate-region-code} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          Country as string,",
+				"          Score as string,",
+				"          {GDP per capita} as string,",
+				"          {Social support} as string,",
+				"          {Healthy life expectancy} as string,",
+				"          {Freedom to make life choices} as string,",
+				"          Generosity as string,",
+				"          {Perceptions of corruption} as string,",
+				"          year as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source1 derive({Upper Case Region} = upper(region)) ~> derivedColumn1",
+				"source2 derive(er = 1) ~> derivedColumn2",
+				"derivedColumn2, derivedColumn1 join(source2@Country == source1@country,",
+				"     joinType:'inner',",
+				"     broadcast: 'auto')~> join1",
+				"join1 aggregate() ~> aggregate1"
+			]
+		}
+	}
+}

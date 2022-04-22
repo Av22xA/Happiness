@@ -49,6 +49,125 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['country']"
+								},
+								"sink": {
+									"name": "country",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['images_file']"
+								},
+								"sink": {
+									"name": "images_file",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['image_url']"
+								},
+								"sink": {
+									"name": "image_url",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['alpha-2']"
+								},
+								"sink": {
+									"name": "alpha-2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['alpha-3']"
+								},
+								"sink": {
+									"name": "alpha-3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['country-code']"
+								},
+								"sink": {
+									"name": "country-code",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['iso_3166-2']"
+								},
+								"sink": {
+									"name": "iso_3166-2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['region']"
+								},
+								"sink": {
+									"name": "region",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sub-region']"
+								},
+								"sink": {
+									"name": "sub-region",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['intermediate-region']"
+								},
+								"sink": {
+									"name": "intermediate-region",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['region-code']"
+								},
+								"sink": {
+									"name": "region-code",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sub-region-code']"
+								},
+								"sink": {
+									"name": "sub-region-code",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['intermediate-region-code']"
+								},
+								"sink": {
+									"name": "intermediate-region-code",
+									"type": "String"
+								}
+							}
+						],
 						"mapComplexValuesToString": true
 					}
 				},
@@ -85,41 +204,6 @@
 					"activities": [
 						{
 							"name": "Data flow1",
-							"type": "ExecuteDataFlow",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "1.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"dataflow": {
-									"referenceName": "ChangeDataTypeAndSinkHappiness",
-									"type": "DataFlowReference",
-									"parameters": {
-										"ParamYear": {
-											"value": "@int(substring(item().name, 7, 4))",
-											"type": "Expression"
-										}
-									},
-									"datasetParameters": {
-										"HappinessCSV": {
-											"FileName": "@item().name"
-										}
-									}
-								},
-								"compute": {
-									"coreCount": 8,
-									"computeType": "General"
-								},
-								"traceLevel": "Fine"
-							}
-						},
-						{
-							"name": "Data flow1_copy1",
 							"type": "ExecuteDataFlow",
 							"dependsOn": [],
 							"policy": {
