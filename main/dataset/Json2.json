@@ -1,0 +1,61 @@
+{
+	"name": "Json2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "happinesscontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"country": {
+					"type": "string"
+				},
+				"images_file": {
+					"type": "string"
+				},
+				"image_url": {
+					"type": "string"
+				},
+				"alpha-2": {
+					"type": "string"
+				},
+				"alpha-3": {
+					"type": "string"
+				},
+				"country-code": {
+					"type": "integer"
+				},
+				"iso_3166-2": {
+					"type": "string"
+				},
+				"region": {
+					"type": "string"
+				},
+				"sub-region": {
+					"type": "string"
+				},
+				"intermediate-region": {
+					"type": "string"
+				},
+				"region-code": {
+					"type": "integer"
+				},
+				"sub-region-code": {
+					"type": "integer"
+				},
+				"intermediate-region-code": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

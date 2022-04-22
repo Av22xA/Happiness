@@ -24,6 +24,9 @@
 			"transformations": [
 				{
 					"name": "AddColumns"
+				},
+				{
+					"name": "rank1"
 				}
 			],
 			"scriptLines": [
@@ -44,7 +47,10 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> HappinessCSV",
 				"HappinessCSV derive(Year = $ParamYear) ~> AddColumns",
-				"AddColumns sink(allowSchemaDrift: true,",
+				"AddColumns rank(asc(Score, true),",
+				"     output(Score as long),",
+				"     dense: true) ~> rank1",
+				"rank1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          ID as integer",
