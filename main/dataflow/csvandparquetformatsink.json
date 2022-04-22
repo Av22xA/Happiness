@@ -19,7 +19,15 @@
 					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Record",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -91,7 +99,21 @@
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> join2",
 				"derivedColumn2 rank(asc(Country, true),",
-				"     output(Score as long)) ~> rank1"
+				"     output(Score as long)) ~> rank1",
+				"derivedColumn3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Country as string,",
+				"          Score as string,",
+				"          {GDP per capita} as string,",
+				"          {Social support} as string,",
+				"          {Healthy life expectancy} as string,",
+				"          {Freedom to make life choices} as string,",
+				"          Generosity as string,",
+				"          {Perceptions of corruption} as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}

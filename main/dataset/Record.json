@@ -1,0 +1,55 @@
+{
+	"name": "Record",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "happinesscontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Score",
+				"type": "String"
+			},
+			{
+				"name": "GDP per capita",
+				"type": "String"
+			},
+			{
+				"name": "Social support",
+				"type": "String"
+			},
+			{
+				"name": "Healthy life expectancy",
+				"type": "String"
+			},
+			{
+				"name": "Freedom to make life choices",
+				"type": "String"
+			},
+			{
+				"name": "Generosity",
+				"type": "String"
+			},
+			{
+				"name": "Perceptions of corruption",
+				"type": "String"
+			}
+		]
+	}
+}
