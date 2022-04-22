@@ -39,9 +39,6 @@
 					"name": "window1"
 				},
 				{
-					"name": "window2"
-				},
-				{
 					"name": "select1"
 				}
 			],
@@ -70,7 +67,6 @@
 				"          {Lowest Rank} = min(denseRank()),",
 				"          {Highest Happiness Score} = max(Score),",
 				"          {Lowest Happiness Score} = min(Score)) ~> window1",
-				"rank1 window(over(Score)) ~> window2",
 				"window1 select(mapColumn(",
 				"          Country,",
 				"          {Highest Rank},",
@@ -99,7 +95,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink2",
-				"window2 sink(allowSchemaDrift: true,",
+				"rank1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          country as string,",
