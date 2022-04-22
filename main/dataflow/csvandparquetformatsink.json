@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Parquet1",
+						"referenceName": "Json2",
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
@@ -143,9 +143,24 @@
 				"     broadcast: 'auto')~> join3",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     format: 'parquet',",
+				"     input(",
+				"          country as string,",
+				"          images_file as string,",
+				"          image_url as string,",
+				"          {alpha-2} as string,",
+				"          {alpha-3} as string,",
+				"          {country-code} as integer,",
+				"          {iso_3166-2} as string,",
+				"          region as string,",
+				"          {sub-region} as string,",
+				"          {intermediate-region} as string,",
+				"          {region-code} as integer,",
+				"          {sub-region-code} as integer,",
+				"          {intermediate-region-code} as integer",
+				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"     skipDuplicateMapOutputs: true,",
+				"     format: 'parquet') ~> sink2",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
