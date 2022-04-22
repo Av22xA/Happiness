@@ -46,19 +46,19 @@
 					"name": "join1"
 				},
 				{
-					"name": "aggregate1"
-				},
-				{
 					"name": "derivedColumn3"
 				},
 				{
 					"name": "join2"
 				},
 				{
-					"name": "rank1"
+					"name": "select1"
 				},
 				{
-					"name": "select1"
+					"name": "window1"
+				},
+				{
+					"name": "aggregate1"
 				}
 			],
 			"scriptLines": [
@@ -99,17 +99,13 @@
 				"     format: 'query') ~> source2",
 				"source1 derive({Upper Case Region} = upper(region)) ~> derivedColumn1",
 				"source2 derive(Score = toFloat(Score)) ~> derivedColumn2",
-				"rank1, derivedColumn1 join(source2@Country == source1@country,",
+				"derivedColumn2, derivedColumn1 join(source2@Country == source1@country,",
 				"     joinType:'inner',",
 				"     broadcast: 'auto')~> join1",
-				"join1 aggregate(groupBy(year),",
-				"     {Rank Per Region} = maxIf(Score == max(Score), region)) ~> aggregate1",
-				"join2 derive({Happiness Status} = case(Score > 5.6, \"green\", case(Score < 2.6, \"Red\", case(Score<= 5.6 && Score >= 2.6, \"Amber\")))) ~> derivedColumn3",
-				"aggregate1, join1 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
-				"     joinType:'inner',",
+				"join2 derive({Happiness Status} = case(rank1@Score > 5.6, \"green\", case(rank1@Score < 2.6, \"Red\", case(rank1@Score<= 5.6 && rank1@Score >= 2.6, \"Amber\")))) ~> derivedColumn3",
+				"window1, join1 join(aggregate1@year == ERROR_FUNCTION(''),",
+				"     joinType:'outer',",
 				"     broadcast: 'auto')~> join2",
-				"derivedColumn2 rank(asc(Country, true),",
-				"     output(Score as long)) ~> rank1",
 				"derivedColumn3 select(mapColumn(",
 				"          {Rank Per Region},",
 				"          {GDP per capita},",
@@ -120,13 +116,18 @@
 				"          {Perceptions of corruption},",
 				"          year = source2@year,",
 				"          image_url,",
-				"          region,",
+				"          region = source1@region,",
 				"          {region-code},",
 				"          {Happiness Status},",
-				"          {Happiness Score} = Score",
+				"          {Happiness Score} = derivedColumn2@Score",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
+				"aggregate1 window(over(Score),",
+				"     {Rank Per Region} = denseRank()) ~> window1",
+				"join1 aggregate(groupBy(year,",
+				"          region),",
+				"     Score = Score) ~> aggregate1",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
